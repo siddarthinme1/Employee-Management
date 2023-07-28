@@ -185,18 +185,7 @@ function Employees() {
             }}
             onChange={handleSearch}
           />
-          <Control.Input
-            className={classes.searchInput}
-            label="Search Employee"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-          />
+
           <Control.Button
             className={classes.addButton}
             text="Add new"
