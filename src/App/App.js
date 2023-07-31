@@ -37,14 +37,16 @@ function App() {
   const Classes = useStyles();
 
   return (
-    <ThemeProvider theme={theme}>
-      <SideMenu />
-      <div className={Classes.appMain}>
-        <Header />
-        <Employees></Employees>
-      </div>
+    <>
+      <ThemeProvider theme={theme}>
+        <SideMenu />
+        <div className={Classes.appMain}>
+          <Header />
+          <Employees></Employees>
+        </div>
+      </ThemeProvider>
       <CssBaseline />
-    </ThemeProvider>
+    </>
   );
 }
 

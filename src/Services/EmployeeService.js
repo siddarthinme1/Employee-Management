@@ -9,14 +9,15 @@ const useEmployeeServices = () => {
   const bloods = getBloodCollection();
   const relations = getRelation();
 
-  const addEmployee = async (values) => {
+  const addEmployee = async (values, res) => {
     console.log("values =", values);
     try {
       const response = await axios.post(API_URL, values);
       console.log("addEmployee = ", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to make request : ", error.message);
+      values.status(500).send("Failed to fetch activity please try again!");
     }
   };
 
@@ -31,7 +32,7 @@ const useEmployeeServices = () => {
           console.log("useAllEmployees = ", response.data);
         })
         .catch((error) => {
-          console.log(error);
+          console.error("Failed to make request : ", error.message);
         });
     }, [employeeListUpdated]);
 
@@ -50,7 +51,7 @@ const useEmployeeServices = () => {
       console.log("deleteEmployee = ", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to make request : ", error.message);
     }
   };
 
@@ -61,7 +62,7 @@ const useEmployeeServices = () => {
       console.log("updateEmployee = ", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to make request : ", error.message);
     }
   };
 
@@ -75,7 +76,7 @@ const useEmployeeServices = () => {
           console.log("useBinEmployees = ", response.data);
         })
         .catch((error) => {
-          console.log(error);
+          console.error("Failed to make request : ", error.message);
         });
     }, [employeeListUpdated]);
 
@@ -94,7 +95,7 @@ const useEmployeeServices = () => {
       console.log("emptyRecycleBin", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to make request : ", error.message);
     }
   };
 
@@ -104,7 +105,7 @@ const useEmployeeServices = () => {
       setEmployeeListUpdated(!employeeListUpdated);
       console.log("restoreEmployee", response);
     } catch (error) {
-      console.error(error);
+      console.error("Failed to make request : ", error.message);
     }
   };
 
