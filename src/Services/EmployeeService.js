@@ -17,7 +17,7 @@ const useEmployeeServices = () => {
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
       console.error("Failed to make request : ", error.message);
-      values.status(500).send("Failed to fetch activity please try again!");
+      // values.status(500).send("Failed to fetch activity please try again!");
     }
   };
 
@@ -25,15 +25,16 @@ const useEmployeeServices = () => {
     const [employees, setEmployees] = useState([]);
 
     useEffect(() => {
-      axios
-        .get(API_URL)
-        .then((response) => {
+      const fetchEmployees = async () => {
+        try {
+          const response = await axios.get(API_URL);
+          console.log(response);
           setEmployees(response.data);
-          console.log("useAllEmployees = ", response.data);
-        })
-        .catch((error) => {
-          console.error("Failed to make request : ", error.message);
-        });
+        } catch (error) {
+          console.error("Failed to make request: ", error.message);
+        }
+      };
+      fetchEmployees();
     }, [employeeListUpdated]);
 
     const employeesWithBlood = employees.map((x) => ({
@@ -68,16 +69,18 @@ const useEmployeeServices = () => {
 
   const useBinEmployees = () => {
     const [binEmployees, setBinEmployees] = useState([]);
+
     useEffect(() => {
-      axios
-        .get(`${API_URL}/bin/`)
-        .then((response) => {
+      const fetchBinEmployees = async () => {
+        try {
+          const response = await axios.get(`${API_URL}/bin/`);
+          console.log(response);
           setBinEmployees(response.data);
-          console.log("useBinEmployees = ", response.data);
-        })
-        .catch((error) => {
-          console.error("Failed to make request : ", error.message);
-        });
+        } catch (error) {
+          console.error("Failed to make request: ", error.message);
+        }
+      };
+      fetchBinEmployees();
     }, [employeeListUpdated]);
 
     const employeesWithBlood = binEmployees.map((x) => ({

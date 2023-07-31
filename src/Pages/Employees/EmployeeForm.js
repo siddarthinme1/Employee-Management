@@ -248,7 +248,7 @@ function EmployeeForm(props) {
               </Grid>
               <Grid xs={12} sm={6} item>
                 <Control.Select
-                  name="relationx"
+                  name="relationxId"
                   label="Relation"
                   value={values.relationxId}
                   onChange={handleInputChange}
@@ -332,7 +332,7 @@ function EmployeeForm(props) {
               </Grid>
               <FormControlLabel
                 required
-                control={<Checkbox />}
+                control={<Checkbox checked />}
                 label="I agree to the terms and conditions as set out by the user agreement."
               />
               <div>

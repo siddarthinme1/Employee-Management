@@ -44,8 +44,8 @@ function App() {
           <Header />
           <Employees></Employees>
         </div>
+        <CssBaseline />
       </ThemeProvider>
-      <CssBaseline />
     </>
   );
 }
