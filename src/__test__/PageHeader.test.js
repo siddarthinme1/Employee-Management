@@ -13,6 +13,5 @@ test("Test title, subTitle and icon are rendering", () => {
   const testIcon = screen.getByTestId("icon");
   expect(testTitle).toBeInTheDocument();
   expect(testSubTitle).toBeInTheDocument();
-  //   console.log(testIcon);
   expect(testIcon).toBeInTheDocument();
 });

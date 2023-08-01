@@ -1,11 +1,11 @@
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     "& .MuiFormControl-root": {
       width: "80%",
-      margin: theme.spacing(1),
+      margin: "8px",
     },
   },
 }));
