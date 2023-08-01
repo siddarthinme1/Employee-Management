@@ -9,15 +9,14 @@ const useEmployeeServices = () => {
   const bloods = getBloodCollection();
   const relations = getRelation();
 
-  const addEmployee = async (values, res) => {
+  const addEmployee = async (values) => {
     console.log("values =", values);
     try {
       const response = await axios.post(API_URL, values);
-      console.log("addEmployee = ", response);
+      console.log("addEmployee =", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
-      console.error("Failed to make request : ", error.message);
-      // values.status(500).send("Failed to fetch activity please try again!");
+      console.error("Failed to make request:", error.message);
     }
   };
 
