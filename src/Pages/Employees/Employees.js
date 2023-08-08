@@ -25,6 +25,8 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 import useEmployeeServices from "../../Services/EmployeeService";
 import CustomAlert from "../../Components/CustomAlert";
 import Snackbar from "@mui/material/Snackbar";
+import { Box } from "@material-ui/core";
+import Header from "../../Components/Header";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -38,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   addButton: {
-    marginLeft: "300px",
+    marginLeft: "250px",
   },
   binSwitch: {
-    marginLeft: "80px",
+    marginLeft: "20px",
   },
 }));
 
@@ -166,168 +168,178 @@ function Employees() {
 
   return (
     <>
-      <PageHeader
-        title="Employee"
-        subTitle="Form Design With Validation"
-        icon={<PeopleIcon fontSize="large" />}
-      />
-      <Paper elevation={0} className={classes.pageContent}>
-        <Toolbar>
-          <Control.Input
-            className={classes.searchInput}
-            label="Search Employee"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-          />
+      <div
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        
+        <PageHeader
+          title="Employee"
+          subTitle="Form Design With Validation"
+          icon={<PeopleIcon fontSize="large" />}
+        />
+        <Paper elevation={0} className={classes.pageContent}>
+          <Toolbar>
+            <Control.Input
+              className={classes.searchInput}
+              label="Search Employee"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              onChange={handleSearch}
+            />
 
-          <Control.Button
-            className={classes.addButton}
-            text="Add new"
-            color="primary"
-            startIcon={<AddIcon />}
-            onClick={() => {
-              setOpenPopup(true);
-              setRecordForEdit(null);
-            }}
-          />
+            <Control.Button
+              fullwidth
+              className={classes.addButton}
+              text="Add new"
+              color="primary"
+              startIcon={<AddIcon />}
+              onClick={() => {
+                setOpenPopup(true);
+                setRecordForEdit(null);
+              }}
+            />
 
-          <FormControlLabel
-            control={
-              <Switch
-                className={classes.binSwitch}
-                onChange={() => setBin(bin === true ? false : true)}
-              />
-            }
-            labelPlacement="end"
-            label="Bin"
-          />
-          {bin === true ? (
-            <Control.ActionButton>
-              <ClearAllIcon onClick={() => handleEmptyRecycleBin()} />
-            </Control.ActionButton>
-          ) : null}
-        </Toolbar>
+            <FormControlLabel
+              control={
+                <Switch
+                  className={classes.binSwitch}
+                  onChange={() => setBin(bin === true ? false : true)}
+                />
+              }
+              labelPlacement="end"
+              label="Bin"
+            />
+            {bin === true ? (
+              <Control.ActionButton>
+                <ClearAllIcon onClick={() => handleEmptyRecycleBin()} />
+              </Control.ActionButton>
+            ) : null}
+          </Toolbar>
 
-        <TblContainer>
-          <TblHead></TblHead>
-          <TableBody>
-            {employees.length > 0 ? (
-              recordsAfterPaging().map((employee) => (
-                <TableRow key={employee.id}>
-                  <TableCell>{employee.id}</TableCell>
-                  <TableCell>{employee.gender}</TableCell>
-                  <TableCell
-                    onClick={() => {
-                      openInPopup(employee);
-                    }}
-                  >
-                    {employee.firstName} {employee.lastName}
-                  </TableCell>
-                  <TableCell>{employee.phone}</TableCell>
-                  <TableCell>{employee.mail}</TableCell>
-                  <TableCell>{employee.birthday.slice(0, 10)}</TableCell>
-                  <TableCell>{employee.blood}</TableCell>
-                  <TableCell>
-                    {employee.streetAddress} {employee.streetAddress2}
-                    <br />
-                    {employee.city} {employee.state}
-                    <br />
-                    {employee.country} {employee.zipcode}
-                  </TableCell>
-
-                  <TableCell>
-                    {employee.firstNamex} {employee.lastNamex}
-                    <br />
-                    {employee.relation}
-                    <br />
-                    {employee.phonex}
-                    <br />
-                    {employee.streetAddressx} {employee.streetAddress2x} <br />
-                    {employee.cityx} {employee.statex}
-                    <br />
-                    {employee.countryx} {employee.zipcodex}
-                  </TableCell>
-                  {bin === false ? (
-                    <TableCell>
-                      <Control.ActionButton>
-                        <DeleteForeverIcon
-                          onClick={() => handleDelete(employee.id)}
-                        />
-                      </Control.ActionButton>
+          <TblContainer>
+            <TblHead></TblHead>
+            <TableBody>
+              {employees.length > 0 ? (
+                recordsAfterPaging().map((employee) => (
+                  <TableRow key={employee.id}>
+                    <TableCell>{employee.id}</TableCell>
+                    <TableCell>{employee.gender}</TableCell>
+                    <TableCell
+                      onClick={() => {
+                        openInPopup(employee);
+                      }}
+                    >
+                      {employee.firstName} {employee.lastName}
                     </TableCell>
-                  ) : (
+                    <TableCell>{employee.phone}</TableCell>
+                    <TableCell>{employee.mail}</TableCell>
+                    <TableCell>{employee.birthday.slice(0, 10)}</TableCell>
+                    <TableCell>{employee.blood}</TableCell>
                     <TableCell>
-                      <Control.ActionButton>
-                        <RestoreIcon
-                          onClick={() => handleRestore(employee.id)}
-                        />
-                      </Control.ActionButton>
+                      {employee.streetAddress} {employee.streetAddress2}
+                      <br />
+                      {employee.city} {employee.state}
+                      <br />
+                      {employee.country} {employee.zipcode}
                     </TableCell>
-                  )}
+
+                    <TableCell>
+                      {employee.firstNamex} {employee.lastNamex}
+                      <br />
+                      {employee.relation}
+                      <br />
+                      {employee.phonex}
+                      <br />
+                      {employee.streetAddressx} {employee.streetAddress2x}{" "}
+                      <br />
+                      {employee.cityx} {employee.statex}
+                      <br />
+                      {employee.countryx} {employee.zipcodex}
+                    </TableCell>
+                    {bin === false ? (
+                      <TableCell>
+                        <Control.ActionButton>
+                          <DeleteForeverIcon
+                            onClick={() => handleDelete(employee.id)}
+                          />
+                        </Control.ActionButton>
+                      </TableCell>
+                    ) : (
+                      <TableCell>
+                        <Control.ActionButton>
+                          <RestoreIcon
+                            onClick={() => handleRestore(employee.id)}
+                          />
+                        </Control.ActionButton>
+                      </TableCell>
+                    )}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={10} className="text-center">
+                    No Employees
+                  </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={10} className="text-center">
-                  No Employees
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </TblContainer>
-        <TblPagination />
-      </Paper>
-      <Popup
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        title={recordForEdit ? "Edit Employee" : "Add Employee"}
-      >
-        {" "}
-        <EmployeeForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
-      </Popup>
-
-      <CustomAlert
-        open={showDeleteAlert}
-        title="Confirm Delete"
-        message="Are you sure to delete this record?"
-        onClose={() => setShowDeleteAlert(false)}
-        onConfirm={handleConfirmDelete}
-      />
-
-      <CustomAlert
-        open={showRestoreAlert}
-        title="Confirm Restore"
-        message="Are you sure to restore the details?"
-        onClose={() => setShowRestoreAlert(false)}
-        onConfirm={handleConfirmRestore}
-      />
-
-      <CustomAlert
-        open={showEmptyBinAlert}
-        title="Confirm Empty Recycle Bin"
-        message="Are you sure to empty the recycle bin?"
-        onClose={() => setShowEmptyBinAlert(false)}
-        onConfirm={handleConfirmEmptyBin}
-      />
-      <Snackbar
-        open={open}
-        autoHideDuration={2000}
-        onClose={() => setOpen(false)}
-      >
-        <Alert
-          onClose={() => setOpen(false)}
-          severity="success"
-          sx={{ width: "100%" }}
+              )}
+            </TableBody>
+          </TblContainer>
+          <TblPagination />
+        </Paper>
+        <Popup
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+          title={recordForEdit ? "Edit Employee" : "Add Employee"}
         >
-          Employee Added Successfully
-        </Alert>
-      </Snackbar>
+          {" "}
+          <EmployeeForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
+        </Popup>
+
+        <CustomAlert
+          open={showDeleteAlert}
+          title="Confirm Delete"
+          message="Are you sure to delete this record?"
+          onClose={() => setShowDeleteAlert(false)}
+          onConfirm={handleConfirmDelete}
+        />
+
+        <CustomAlert
+          open={showRestoreAlert}
+          title="Confirm Restore"
+          message="Are you sure to restore the details?"
+          onClose={() => setShowRestoreAlert(false)}
+          onConfirm={handleConfirmRestore}
+        />
+
+        <CustomAlert
+          open={showEmptyBinAlert}
+          title="Confirm Empty Recycle Bin"
+          message="Are you sure to empty the recycle bin?"
+          onClose={() => setShowEmptyBinAlert(false)}
+          onConfirm={handleConfirmEmptyBin}
+        />
+        <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          onClose={() => setOpen(false)}
+        >
+          <Alert
+            onClose={() => setOpen(false)}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Employee Added Successfully
+          </Alert>
+        </Snackbar>
+      </div>
     </>
   );
 }

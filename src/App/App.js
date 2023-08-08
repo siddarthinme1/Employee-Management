@@ -1,12 +1,13 @@
-import "./App.css";
 import React from "react";
-import SideMenu from "../Components/SideMenu";
-import Header from "../Components/Header";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { makeStyles } from "@mui/styles";
-import Employees from "../Pages/Employees/Employees";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
+import SignIn from "../Components/SignIn";
+import SignUp from "../Components/SignUp";
+import Home from "../Pages/Employees/Home";
 
+// Create a theme
 const theme = createTheme({
   palette: {
     primary: {
@@ -26,27 +27,28 @@ const theme = createTheme({
   },
 });
 
-const useStyles = makeStyles({
+// Styles
+const useStyles = makeStyles((theme) => ({
   appMain: {
-    paddingLeft: "250px",
+    // paddingLeft: "250px",
     width: "100%",
   },
-});
+}));
 
 function App() {
-  const Classes = useStyles();
+  const classes = useStyles();
 
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <SideMenu />
-        <div className={Classes.appMain}>
-          <Header />
-          <Employees></Employees>
-        </div>
-        <CssBaseline />
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <div className={classes.appMain}>
+        <Routes>
+          <Route path="/EmployeeManagement" element={<SignIn />} />
+          <Route path="EmployeeManagement/signup" element={<SignUp />} />
+          <Route path="EmployeeManagement/employees" element={<Home />} />
+        </Routes>
+      </div>
+      <CssBaseline />
+    </ThemeProvider>
   );
 }
 

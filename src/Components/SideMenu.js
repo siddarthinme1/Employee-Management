@@ -10,6 +10,7 @@ const useStyles = makeStyles({
     width: "250px",
     height: "100%",
     backgroundColor: "#29394d",
+    margin: "auto",
   },
 });
 
