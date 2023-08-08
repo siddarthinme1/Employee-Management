@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../../Components/Header";
 import Employees from "./Employees";
 
-function Home() {
+function HomePage() {
   return (
     <div>
       <Header />
@@ -11,4 +11,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;

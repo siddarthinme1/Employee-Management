@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { Navigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -35,18 +36,44 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function SignIn(props) {
+  const { authenticated, setAuthenticated } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    email: data.get("email");
+    password: data.get("password");
+
+    try {
+      const response = await fetch(
+        `http://localhost:8080/checkUserCredentials?email=${email}&password=${password}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.ok) {
+        console.log("Sign-in successful!");
+        setAuthenticated(true);
+        // Navigate("/EmployeeManagement/employees");
+      } else {
+        console.error("Invalid credentials");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+
+  if (authenticated) {
+    return <Navigate to="/EmployeeManagement/employees" />;
+  }
 
   return (
     <ThemeProvider theme={defaultTheme}>

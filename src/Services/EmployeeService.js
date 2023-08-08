@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { getBloodCollection, getRelation } from "./EmployeeServiceData";
 
-const API_URL = "http://localhost:8080/api/employees";
+const API_URL = "http://localhost:8080/employees";
 
 const useEmployeeServices = () => {
   const [employeeListUpdated, setEmployeeListUpdated] = useState(false);

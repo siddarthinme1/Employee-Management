@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@mui/styles";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import SignIn from "../Components/SignIn";
 import SignUp from "../Components/SignUp";
-import Home from "../Pages/Employees/Home";
+import HomePage from "../Pages/Employees/HomePage";
 
 // Create a theme
 const theme = createTheme({
@@ -34,18 +34,55 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 }));
+const isAuthenticated = true;
 
 function App() {
   const classes = useStyles();
+  const [authenticated, setAuthenticated] = useState(false);
+  {
+    console.log(authenticated);
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <div className={classes.appMain}>
-        <Routes>
-          <Route path="/EmployeeManagement" element={<SignIn />} />
-          <Route path="EmployeeManagement/signup" element={<SignUp />} />
-          <Route path="EmployeeManagement/employees" element={<Home />} />
-        </Routes>
+        <ThemeProvider theme={theme}>
+          <div className={classes.appMain}>
+            <Routes>
+              <Route
+                path="/EmployeeManagement"
+                element={
+                  <SignIn
+                    authenticated={authenticated}
+                    setAuthenticated={setAuthenticated}
+                  />
+                }
+              />
+              <Route path="/EmployeeManagement/signup" element={<SignUp />} />
+              {/* <Route
+                path="/EmployeeManagement/employees"
+                element={<HomePage />}
+              /> */}
+              {/* {authenticated && (
+                <Route
+                  path="/EmployeeManagement/employees"
+                  element={<HomePage />}
+                />
+              )} */}
+              <Route
+                path="/EmployeeManagement/employees"
+                element={
+                  authenticated ? (
+                    <HomePage />
+                  ) : (
+                    <Navigate to="/EmployeeManagement" />
+                  )
+                }
+              />
+            </Routes>
+          </div>
+          <CssBaseline />
+        </ThemeProvider>
       </div>
       <CssBaseline />
     </ThemeProvider>
