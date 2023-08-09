@@ -32,7 +32,6 @@ function Copyright(props) {
   );
 }
 
-
 const defaultTheme = createTheme();
 
 export default function SignIn(props) {
@@ -42,10 +41,6 @@ export default function SignIn(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-
-    email: data.get("email");
-    password: data.get("password");
 
     try {
       const response = await fetch(

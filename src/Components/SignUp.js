@@ -48,8 +48,8 @@ export default function SignUp() {
     const requestData = {
       email: data.get("email"),
       password: data.get("password"),
-      firstname: data.get("firstName"),
-      lastname: data.get("lastName"),
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
     };
 
     try {
