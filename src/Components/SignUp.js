@@ -54,7 +54,7 @@ export default function SignUp() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/saveUserAccount",
+        "http://localhost:8080/api/saveUserAccount",
         requestData
       );
       if (response.status === 200) {

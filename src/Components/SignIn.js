@@ -32,7 +32,6 @@ function Copyright(props) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
@@ -50,7 +49,7 @@ export default function SignIn(props) {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/checkUserCredentials?email=${email}&password=${password}`,
+        `http://localhost:8080/api/checkUserCredentials?email=${email}&password=${password}`,
         {
           method: "GET",
           headers: {
