@@ -61,7 +61,7 @@ function App() {
               />
               <Route path="/Employee-Management/signup" element={<SignUp />} />
               <Route
-                path="/EmployeeManagement/employees"
+                path="/Employee-Management/employees"
                 element={
                   authenticated ? (
                     <PageLayout>

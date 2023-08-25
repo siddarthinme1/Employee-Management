@@ -66,7 +66,7 @@ export default function SignIn(props) {
   };
 
   if (authenticated) {
-    return <Navigate to="/EmployeeManagement/employees" />;
+    return <Navigate to="/Employee-Management/employees" />;
   }
 
   return (
