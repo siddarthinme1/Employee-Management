@@ -136,7 +136,7 @@ export default function SignIn(props) {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/EmployeeManagement/signup" variant="body2">
+                <Link href="/Employee-Management/signup" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

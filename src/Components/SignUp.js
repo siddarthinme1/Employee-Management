@@ -59,7 +59,7 @@ export default function SignUp() {
       );
       if (response.status === 200) {
         console.log("User account saved successfully");
-        navigate("/EmployeeManagement");
+        navigate("/Employee-Management");
       } else {
         console.error("Failed to save user account");
       }
@@ -154,7 +154,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/EmployeeManagement" variant="body2">
+                <Link href="/Employee-Management" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
