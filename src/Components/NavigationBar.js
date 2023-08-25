@@ -28,11 +28,6 @@ const useStyles = makeStyles(() => ({
 export const NavigationBar = () => {
   const classes = useStyles();
 
-  /**
-   * Most applications will need to conditionally render certain components based on whether a user is signed in or not.
-   * msal-react provides 2 easy ways to do this. AuthenticatedTemplate and UnauthenticatedTemplate components will
-   * only render their children if a user is authenticated or unauthenticated, respectively.
-   */
   return (
     <>
       <AppBar color="primary" variant="contained" position="static">
@@ -59,7 +54,6 @@ export const NavigationBar = () => {
               <Button variant="contained" color="error">
                 Sign out
               </Button>
-
               <Button variant="contained" color="success">
                 Sign in
               </Button>

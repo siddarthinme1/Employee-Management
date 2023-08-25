@@ -7,7 +7,6 @@ import PeopleIcon from "@mui/icons-material/People";
 export const PageLayout = (props) => {
   return (
     <>
-      {/* <FullWidthTabs /> */}
       <NavigationBar />
       <PageHeader
         title="Employee"
@@ -17,14 +16,14 @@ export const PageLayout = (props) => {
       {props.children}
       <footer>
         <center>
-          How did we do?
+          Go to GitHub!
           <Link
-            href="https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR73pcsbpbxNJuZCMKN0lURpUMlRHSkc5U1NLUkxFNEtVN0dEOTFNQkdTWiQlQCN0PWcu"
+            href="https://github.com/siddarthinme1/Employee-Management"
             target="_blank"
             rel="noreferrer"
           >
             {" "}
-            Share your experience!
+            GitHub Employee Management
           </Link>
         </center>
       </footer>

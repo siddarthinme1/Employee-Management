@@ -51,7 +51,7 @@ function App() {
           <div className={classes.appMain}>
             <Routes>
               <Route
-                path="/EmployeeManagement"
+                path="/Employee-Management"
                 element={
                   <SignIn
                     authenticated={authenticated}
@@ -59,17 +59,7 @@ function App() {
                   />
                 }
               />
-              <Route path="/EmployeeManagement/signup" element={<SignUp />} />
-              {/* <Route
-                path="/EmployeeManagement/employees"
-                element={<HomePage />}
-              /> */}
-              {/* {authenticated && (
-                <Route
-                  path="/EmployeeManagement/employees"
-                  element={<HomePage />}
-                />
-              )} */}
+              <Route path="/Employee-Management/signup" element={<SignUp />} />
               <Route
                 path="/EmployeeManagement/employees"
                 element={
@@ -78,7 +68,7 @@ function App() {
                       <Employees />
                     </PageLayout>
                   ) : (
-                    <Navigate to="/EmployeeManagement" />
+                    <Navigate to="/Employee-Management" />
                   )
                 }
               />
