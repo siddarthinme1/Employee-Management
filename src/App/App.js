@@ -5,7 +5,8 @@ import { CssBaseline } from "@mui/material";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SignIn from "../Components/SignIn";
 import SignUp from "../Components/SignUp";
-import HomePage from "../Pages/Employees/HomePage";
+import { PageLayout } from "../Components/PageLayout";
+import Employees from "../Pages/Employees/Employees";
 
 // Create a theme
 const theme = createTheme({
@@ -73,7 +74,9 @@ function App() {
                 path="/EmployeeManagement/employees"
                 element={
                   authenticated ? (
-                    <HomePage />
+                    <PageLayout>
+                      <Employees />
+                    </PageLayout>
                   ) : (
                     <Navigate to="/EmployeeManagement" />
                   )

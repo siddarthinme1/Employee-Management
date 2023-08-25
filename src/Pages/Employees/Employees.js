@@ -9,6 +9,8 @@ import {
   Switch,
   FormControlLabel,
   Alert,
+  Grid,
+  Tooltip,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import EmployeeForm from "./EmployeeForm";
@@ -27,6 +29,8 @@ import CustomAlert from "../../Components/CustomAlert";
 import Snackbar from "@mui/material/Snackbar";
 import { Box } from "@material-ui/core";
 import Header from "../../Components/Header";
+import Fab from "@mui/material/Fab";
+import Zoom from "@mui/material/Zoom";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -174,54 +178,70 @@ function Employees() {
           flexDirection: "column",
         }}
       >
-        
-        <PageHeader
-          title="Employee"
-          subTitle="Form Design With Validation"
-          icon={<PeopleIcon fontSize="large" />}
-        />
         <Paper elevation={0} className={classes.pageContent}>
           <Toolbar>
-            <Control.Input
-              className={classes.searchInput}
-              label="Search Employee"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-              onChange={handleSearch}
-            />
-
-            <Control.Button
-              fullwidth
-              className={classes.addButton}
-              text="Add new"
-              color="primary"
-              startIcon={<AddIcon />}
-              onClick={() => {
-                setOpenPopup(true);
-                setRecordForEdit(null);
-              }}
-            />
-
-            <FormControlLabel
-              control={
-                <Switch
-                  className={classes.binSwitch}
-                  onChange={() => setBin(bin === true ? false : true)}
+            <Grid container alignItems="center" columns={{ xs: 4, md: 12 }}>
+              <Grid item xs={4}>
+                <Control.Input
+                  fullwidth="true"
+                  className={classes.searchInput}
+                  label="Search Employee"
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                  onChange={handleSearch}
                 />
-              }
-              labelPlacement="end"
-              label="Bin"
-            />
-            {bin === true ? (
-              <Control.ActionButton>
-                <ClearAllIcon onClick={() => handleEmptyRecycleBin()} />
-              </Control.ActionButton>
-            ) : null}
+              </Grid>
+              <Grid item sm>
+                {" "}
+              </Grid>
+              <Grid item>
+                <Zoom in="true">
+                  <Tooltip title="Add Employee">
+                    <Fab
+                      fullwidth="true"
+                      // className={classes.addButton}
+                      // text="Add"
+                      color="primary"
+                      // startIcon={<AddIcon />}
+                      onClick={() => {
+                        setOpenPopup(true);
+                        setRecordForEdit(null);
+                      }}
+                    >
+                      <AddIcon />
+                    </Fab>
+                  </Tooltip>
+                </Zoom>
+              </Grid>
+              <Grid item>
+                <Tooltip title="Recycle Bin">
+                  <FormControlLabel
+                    control={
+                      <Switch
+                        className={classes.binSwitch}
+                        onChange={() => setBin(bin === true ? false : true)}
+                      />
+                    }
+                    labelPlacement="end"
+                    label="Bin"
+                  />
+                </Tooltip>
+              </Grid>
+              <Grid item xs={1}>
+                {bin === true ? (
+                  <Control.ActionButton>
+                    <Tooltip title="Delete All Employees">
+                      <ClearAllIcon onClick={() => handleEmptyRecycleBin()} />
+                    </Tooltip>
+                  </Control.ActionButton>
+                ) : null}
+              </Grid>
+            </Grid>
           </Toolbar>
 
           <TblContainer>
@@ -267,17 +287,21 @@ function Employees() {
                     {bin === false ? (
                       <TableCell>
                         <Control.ActionButton>
-                          <DeleteForeverIcon
-                            onClick={() => handleDelete(employee.id)}
-                          />
+                          <Tooltip title="Delete Employee">
+                            <DeleteForeverIcon
+                              onClick={() => handleDelete(employee.id)}
+                            />
+                          </Tooltip>
                         </Control.ActionButton>
                       </TableCell>
                     ) : (
                       <TableCell>
                         <Control.ActionButton>
-                          <RestoreIcon
-                            onClick={() => handleRestore(employee.id)}
-                          />
+                          <Tooltip title="Restore Employee">
+                            <RestoreIcon
+                              onClick={() => handleRestore(employee.id)}
+                            />
+                          </Tooltip>
                         </Control.ActionButton>
                       </TableCell>
                     )}

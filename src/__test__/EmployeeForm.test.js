@@ -14,11 +14,11 @@ test("Submitting the form with valid data", async () => {
   const bloodId = AllInputFields[5];
   const gender = AllInputFields[6];
 
-  for (let i = 0; i < AllInputFields.length; i++) {
-    console.log(i, AllInputFields[i].name);
-  }
+  // for (let i = 0; i < AllInputFields.length; i++) {
+  //   console.log(i, AllInputFields[i].name);
+  // }
 
-  fireEvent.change(gender, { target: { value: Female } });
+  fireEvent.change(gender, { target: { value: "Male" } });
   fireEvent.change(firstName, { target: { value: "John" } });
   fireEvent.change(lastName, { target: { value: "Wick" } });
   fireEvent.change(phone, { target: { value: "8123001085" } });
@@ -32,5 +32,5 @@ test("Submitting the form with valid data", async () => {
   expect(email).toHaveValue("John@gmail.com");
   expect(birthday).toHaveValue("01/006/1997");
   expect(bloodId).toHaveValue("1");
-  expect(gender.value).toBe("Female");
+  expect(gender.value).toBe("Male");
 });

@@ -13,8 +13,8 @@ const useStyles = makeStyles(() => ({
   dialogWrapper: {
     padding: "16px",
     position: "absolute",
-    top: "40px",
-    left: "400px",
+    top: "auto",
+    left: "auto",
   },
   dialogTitle: {
     padding: "0px",
