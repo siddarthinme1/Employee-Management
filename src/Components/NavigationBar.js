@@ -34,7 +34,7 @@ export const NavigationBar = () => {
         <Toolbar>
           <Grid container alignItems="center" columns={{ xs: 4, md: 12 }}>
             <Grid item>
-              <Link href="/EmployeeManagement">
+              <Link href="/Employee-Management">
                 <Typography variant="h5" component="h2" sx={{ color: "white" }}>
                   L&T Technology Services
                 </Typography>
