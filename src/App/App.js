@@ -7,6 +7,7 @@ import SignIn from "../Components/SignIn";
 import SignUp from "../Components/SignUp";
 import { PageLayout } from "../Components/PageLayout";
 import Employees from "../Pages/Employees/Employees";
+import { NavigationBar } from "../Components/NavigationBar";
 
 // Create a theme
 const theme = createTheme({

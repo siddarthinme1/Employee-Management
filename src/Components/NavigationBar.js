@@ -51,7 +51,11 @@ export const NavigationBar = () => {
             </Grid>
             <Grid item sm></Grid>
             <Grid item>
-              <Button variant="contained" color="error">
+              <Button
+                variant="contained"
+                color="error"
+                href="/Employee-Management"
+              >
                 Sign out
               </Button>
               <Button variant="contained" color="success">
