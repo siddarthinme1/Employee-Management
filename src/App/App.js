@@ -36,17 +36,16 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 }));
-const isAuthenticated = true;
+
+// {const isAuthenticated = true;}
 
 function App() {
   const classes = useStyles();
   const [authenticated, setAuthenticated] = useState(false);
-  {
-    console.log(authenticated);
-  }
 
   return (
     <ThemeProvider theme={theme}>
+      <NavigationBar authenticated={authenticated} />
       <div className={classes.appMain}>
         <ThemeProvider theme={theme}>
           <div className={classes.appMain}>

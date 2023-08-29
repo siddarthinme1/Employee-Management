@@ -2,6 +2,7 @@ import {
   AppBar,
   Button,
   Grid,
+  IconButton,
   InputBase,
   Link,
   Toolbar,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,13 +27,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const NavigationBar = () => {
+export const NavigationBar = (props) => {
   const classes = useStyles();
 
   return (
     <>
       <AppBar color="primary" variant="contained" position="static">
         <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
           <Grid container alignItems="center" columns={{ xs: 4, md: 12 }}>
             <Grid item>
               <Link href="/Employee-Management">
@@ -40,27 +51,33 @@ export const NavigationBar = () => {
                 </Typography>
               </Link>
             </Grid>
-            <Grid item>
-              <InputBase
-                data-testid="searchInput"
-                startAdornment={<SearchIcon fontSize="small" />}
-                placeholder="Search"
-                className={classes.searchInput}
-                sx={{ ml: "15px", borderRadius: "8px" }}
-              ></InputBase>
-            </Grid>
+
             <Grid item sm></Grid>
             <Grid item>
-              <Button
-                variant="contained"
-                color="error"
-                href="/Employee-Management"
-              >
-                Sign out
-              </Button>
-              <Button variant="contained" color="success">
-                Sign in
-              </Button>
+              {props.authenticated ? (
+                <InputBase
+                  data-testid="searchInput"
+                  startAdornment={<SearchIcon fontSize="small" />}
+                  placeholder="Search"
+                  className={classes.searchInput}
+                  sx={{ ml: "15px", borderRadius: "8px", mr: "15px" }}
+                ></InputBase>
+              ) : null}
+            </Grid>
+            <Grid item>
+              {props.authenticated ? (
+                <Button
+                  variant="contained"
+                  color="error"
+                  href="/Employee-Management"
+                >
+                  Sign out
+                </Button>
+              ) : (
+                <Button variant="contained" color="success">
+                  Sign in
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Toolbar>

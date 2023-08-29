@@ -91,7 +91,6 @@ function EmployeeForm(props) {
     e.preventDefault();
     if (validate()) {
       addOrEdit(values, resetForm);
-      // window.alert("validated");
     }
   };
 
@@ -101,7 +100,7 @@ function EmployeeForm(props) {
         ...recordForEdit,
       });
     }
-  }, [recordForEdit]);
+  }, [recordForEdit, setValues]);
 
   return (
     <>

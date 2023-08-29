@@ -14,8 +14,6 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import EmployeeForm from "./EmployeeForm";
-import PageHeader from "../../Components/PageHeader";
-import PeopleIcon from "@mui/icons-material/People";
 import Control from "../../Controls/Control";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
@@ -27,15 +25,13 @@ import ClearAllIcon from "@mui/icons-material/ClearAll";
 import useEmployeeServices from "../../Services/EmployeeService";
 import CustomAlert from "../../Components/CustomAlert";
 import Snackbar from "@mui/material/Snackbar";
-import { Box } from "@material-ui/core";
-import Header from "../../Components/Header";
 import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   pageContent: {
-    margin: theme.spacing(3),
-    padding: theme.spacing(3),
+    margin: "24px",
+    padding: "24px",
   },
   searchInput: {
     width: "50%",
@@ -196,9 +192,7 @@ function Employees() {
                   onChange={handleSearch}
                 />
               </Grid>
-              <Grid item sm>
-                {" "}
-              </Grid>
+              <Grid item sm></Grid>
               <Grid item>
                 <Zoom in="true">
                   <Tooltip title="Add Employee">

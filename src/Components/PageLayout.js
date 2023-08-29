@@ -1,5 +1,3 @@
-import { AuthenticatedTemplate } from "@azure/msal-react";
-import { NavigationBar } from "./NavigationBar";
 import { Link } from "@mui/material";
 import PageHeader from "./PageHeader";
 import PeopleIcon from "@mui/icons-material/People";
@@ -7,7 +5,6 @@ import PeopleIcon from "@mui/icons-material/People";
 export const PageLayout = (props) => {
   return (
     <>
-      <NavigationBar />
       <PageHeader
         title="Employee"
         subTitle="Welcome to the Employee Management System"
