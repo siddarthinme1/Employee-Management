@@ -69,12 +69,12 @@ function Employees() {
   const [showRestoreAlert, setShowRestoreAlert] = useState(false);
   const [showEmptyBinAlert, setShowEmptyBinAlert] = useState(false);
   const [itemIdToRestore, setItemIdToRestore] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const allEmployees = useAllEmployees();
   const binEmployees = useBinEmployees();
 
-  const data = bin === false ? allEmployees : binEmployees;
+  const employees = bin === false ? allEmployees : binEmployees;
 
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
@@ -83,7 +83,7 @@ function Employees() {
   });
 
   const { TblContainer, TblHead, TblPagination, recordsAfterPaging } = useTable(
-    data,
+    employees,
     headCells,
     filterFn
   );
@@ -188,10 +188,7 @@ function Employees() {
                   <Tooltip title="Add Employee">
                     <Fab
                       fullwidth="true"
-                      // className={classes.addButton}
-                      // text="Add"
                       color="primary"
-                      // startIcon={<AddIcon />}
                       onClick={() => {
                         setOpenPopup(true);
                         setRecordForEdit(null);
@@ -231,7 +228,7 @@ function Employees() {
           <TblContainer>
             <TblHead></TblHead>
             <TableBody>
-              {data.length > 0 ? (
+              {employees.length > 0 ? (
                 recordsAfterPaging().map((employee) => (
                   <TableRow key={employee.id}>
                     <TableCell>{employee.id}</TableCell>
@@ -293,7 +290,7 @@ function Employees() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={10} className="text-center">
+                  <TableCell colSpan={10} sx={{ textAlign: "center" }}>
                     No Employees
                   </TableCell>
                 </TableRow>

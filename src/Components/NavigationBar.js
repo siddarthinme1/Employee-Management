@@ -1,10 +1,9 @@
 import {
   AppBar,
   Button,
-  Grid,
   IconButton,
   InputBase,
-  Link,
+  Switch,
   Toolbar,
   Typography,
 } from "@mui/material";
@@ -30,10 +29,14 @@ const useStyles = makeStyles(() => ({
 export const NavigationBar = (props) => {
   const classes = useStyles();
 
+  const handleToggle = () => {
+    props.setDarkMode((current) => !current);
+  };
+
   return (
     <>
-      <AppBar color="primary" variant="contained" position="static">
-        <Toolbar>
+      <AppBar position="static">
+        <Toolbar sx={{ display: "flex" }}>
           <IconButton
             size="large"
             edge="start"
@@ -43,43 +46,45 @@ export const NavigationBar = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          <Grid container alignItems="center" columns={{ xs: 4, md: 12 }}>
-            <Grid item>
-              <Link href="/Employee-Management">
-                <Typography variant="h5" component="h2" sx={{ color: "white" }}>
-                  L&T Technology Services
-                </Typography>
-              </Link>
-            </Grid>
-
-            <Grid item sm></Grid>
-            <Grid item>
-              {props.authenticated ? (
-                <InputBase
-                  data-testid="searchInput"
-                  startAdornment={<SearchIcon fontSize="small" />}
-                  placeholder="Search"
-                  className={classes.searchInput}
-                  sx={{ ml: "15px", borderRadius: "8px", mr: "15px" }}
-                ></InputBase>
-              ) : null}
-            </Grid>
-            <Grid item>
-              {props.authenticated ? (
-                <Button
-                  variant="contained"
-                  color="error"
-                  href="/Employee-Management"
-                >
-                  Sign out
-                </Button>
-              ) : (
-                <Button variant="contained" color="success" href="/Employee-Management">
-                  Sign in
-                </Button>
-              )}
-            </Grid>
-          </Grid>
+          <Typography
+            variant="h5"
+            component="a"
+            noWrap
+            href="/Employee-Management"
+            sx={{
+              color: "white",
+              flexGrow: 1,
+              textDecoration: "none",
+            }}
+          >
+            L&T Technology Services
+          </Typography>
+          {props.authenticated ? (
+            <InputBase
+              data-testid="searchInput"
+              startAdornment={<SearchIcon fontSize="small" />}
+              placeholder="Search"
+              className={classes.searchInput}
+              sx={{
+                ml: "15px",
+                borderRadius: "8px",
+                mr: "15px",
+              }}
+            ></InputBase>
+          ) : null}
+          <Button
+            variant="contained"
+            color={props.authenticated ? "error" : "success"}
+            href="/Employee-Management"
+            sx={{
+              ml: "15px",
+              borderRadius: "8px",
+              mr: "15px",
+            }}
+          >
+            {props.authenticated ? "Sign Out" : "Sign In"}
+          </Button>
+          <Switch aria-label="Mode" onClick={handleToggle} />
         </Toolbar>
       </AppBar>
     </>

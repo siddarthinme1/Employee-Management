@@ -10,7 +10,7 @@ import Employees from "../Pages/Employees/Employees";
 import { NavigationBar } from "../Components/NavigationBar";
 
 // Create a theme
-const theme = createTheme({
+const lightTheme = createTheme({
   palette: {
     primary: {
       main: "#333996",
@@ -28,55 +28,46 @@ const theme = createTheme({
     borderRadius: "10px",
   },
 });
-
-// Styles
-const useStyles = makeStyles((theme) => ({
-  appMain: {
-    // paddingLeft: "250px",
-    width: "100%",
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
   },
-}));
-
-// {const isAuthenticated = true;}
+  shape: {
+    borderRadius: "10px",
+  },
+});
 
 function App() {
-  const classes = useStyles();
   const [authenticated, setAuthenticated] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavigationBar authenticated={authenticated} />
-      <div className={classes.appMain}>
-        <ThemeProvider theme={theme}>
-          <div className={classes.appMain}>
-            <Routes>
-              <Route
-                path="/Employee-Management"
-                element={
-                  <SignIn
-                    authenticated={authenticated}
-                    setAuthenticated={setAuthenticated}
-                  />
-                }
-              />
-              <Route path="/Employee-Management/signup" element={<SignUp />} />
-              <Route
-                path="/Employee-Management/employees"
-                element={
-                  authenticated ? (
-                    <PageLayout>
-                      <Employees />
-                    </PageLayout>
-                  ) : (
-                    <Navigate to="/Employee-Management" />
-                  )
-                }
-              />
-            </Routes>
-          </div>
-          <CssBaseline />
-        </ThemeProvider>
-      </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <NavigationBar authenticated={authenticated} setDarkMode={setDarkMode} />
+      <Routes>
+        <Route
+          path="/Employee-Management"
+          element={
+            <SignIn
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            />
+          }
+        />
+        <Route path="/Employee-Management/signup" element={<SignUp />} />
+        <Route
+          path="/Employee-Management/employees"
+          element={
+            authenticated ? (
+              <PageLayout>
+                <Employees />
+              </PageLayout>
+            ) : (
+              <Navigate to="/Employee-Management" />
+            )
+          }
+        />
+      </Routes>
       <CssBaseline />
     </ThemeProvider>
   );
