@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import bcrypt from "bcryptjs";
 
 function Copyright(props) {
   return (
@@ -26,14 +27,14 @@ function Copyright(props) {
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{" "}
+      </Link>
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }
 
 const defaultTheme = createTheme();
+const salt = bcrypt.genSaltSync(10);
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ export default function SignUp() {
     });
     const requestData = {
       email: data.get("email"),
-      password: data.get("password"),
+      password: bcrypt.hashSync(data.get("password"), salt),
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
     };

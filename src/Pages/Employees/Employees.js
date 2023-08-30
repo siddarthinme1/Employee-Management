@@ -27,6 +27,7 @@ import CustomAlert from "../../Components/CustomAlert";
 import Snackbar from "@mui/material/Snackbar";
 import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
+import { headCells } from "../../Services/EmployeeServiceData";
 
 const useStyles = makeStyles(() => ({
   pageContent: {
@@ -46,19 +47,6 @@ const useStyles = makeStyles(() => ({
     marginLeft: "20px",
   },
 }));
-
-const headCells = [
-  { id: "id", label: "ID" },
-  { id: "gender", label: "Gender" },
-  { id: "fullName", label: "Full Name" },
-  { id: "phone", label: "Phone" },
-  { id: "mail", label: "Email" },
-  { id: "birthday", label: "Birthday" },
-  { id: "blood", label: "Blood" },
-  { id: "address", label: "Address" },
-  { id: "emergency", label: "Emergency Contact Details" },
-  { id: "", label: "" },
-];
 
 function Employees() {
   const classes = useStyles();
@@ -81,10 +69,12 @@ function Employees() {
   const [showRestoreAlert, setShowRestoreAlert] = useState(false);
   const [showEmptyBinAlert, setShowEmptyBinAlert] = useState(false);
   const [itemIdToRestore, setItemIdToRestore] = useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const employees = useAllEmployees();
-  const deletedEmployees = useBinEmployees();
+  const allEmployees = useAllEmployees();
+  const binEmployees = useBinEmployees();
+
+  const data = bin === false ? allEmployees : binEmployees;
 
   const [filterFn, setFilterFn] = useState({
     fn: (items) => {
@@ -93,7 +83,7 @@ function Employees() {
   });
 
   const { TblContainer, TblHead, TblPagination, recordsAfterPaging } = useTable(
-    bin === false ? employees : deletedEmployees,
+    data,
     headCells,
     filterFn
   );
@@ -241,7 +231,7 @@ function Employees() {
           <TblContainer>
             <TblHead></TblHead>
             <TableBody>
-              {employees.length > 0 ? (
+              {data.length > 0 ? (
                 recordsAfterPaging().map((employee) => (
                   <TableRow key={employee.id}>
                     <TableCell>{employee.id}</TableCell>

@@ -74,7 +74,7 @@ export const NavigationBar = (props) => {
                   Sign out
                 </Button>
               ) : (
-                <Button variant="contained" color="success">
+                <Button variant="contained" color="success" href="/Employee-Management">
                   Sign in
                 </Button>
               )}

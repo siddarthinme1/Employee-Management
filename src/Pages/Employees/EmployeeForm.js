@@ -1,3 +1,6 @@
+import React, { useEffect } from "react";
+import { useForm, Form } from "../../Components/useForm";
+import Control from "../../Controls/Control";
 import {
   Checkbox,
   Grid,
@@ -5,56 +8,12 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
-import React, { useEffect } from "react";
-import { useForm, Form } from "../../Components/useForm";
-import Control from "../../Controls/Control";
 import {
   getBloodCollection,
   getRelation,
+  genderItems,
+  initialFieldValues,
 } from "../../Services/EmployeeServiceData";
-
-const genderItems = [
-  {
-    id: "Male",
-    title: "Male",
-  },
-  {
-    id: "Female",
-    title: "Female",
-  },
-  {
-    id: "Other",
-    title: "Other",
-  },
-];
-
-const initialFieldValues = {
-  id: 0,
-  gender: "Male",
-  firstName: "",
-  lastName: "",
-  phone: "",
-  mail: "",
-  birthday: new Date(),
-  bloodId: 1,
-  streetAddress: "",
-  streetAddress2: "",
-  city: "",
-  state: "",
-  country: "",
-  zipcode: "",
-  genderx: "Male",
-  firstNamex: "",
-  lastNamex: "",
-  relationxId: 1,
-  phonex: "",
-  streetAddressx: "",
-  streetAddress2x: "",
-  cityx: "",
-  statex: "",
-  countryx: "",
-  zipcodex: "",
-};
 
 function EmployeeForm(props) {
   const { addOrEdit, recordForEdit } = props;

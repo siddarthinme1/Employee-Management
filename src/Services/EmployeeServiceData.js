@@ -23,3 +23,59 @@ export const getRelation = () => [
   { id: "5", title: "Wife" },
   { id: "6", title: "Other" },
 ];
+
+export const genderItems = [
+  {
+    id: "Male",
+    title: "Male",
+  },
+  {
+    id: "Female",
+    title: "Female",
+  },
+  {
+    id: "Other",
+    title: "Other",
+  },
+];
+
+export const initialFieldValues = {
+  id: 0,
+  gender: "Male",
+  firstName: "",
+  lastName: "",
+  phone: "",
+  mail: "",
+  birthday: new Date(),
+  bloodId: 1,
+  streetAddress: "",
+  streetAddress2: "",
+  city: "",
+  state: "",
+  country: "",
+  zipcode: "",
+  genderx: "Male",
+  firstNamex: "",
+  lastNamex: "",
+  relationxId: 1,
+  phonex: "",
+  streetAddressx: "",
+  streetAddress2x: "",
+  cityx: "",
+  statex: "",
+  countryx: "",
+  zipcodex: "",
+};
+
+export const headCells = [
+  { id: "id", label: "ID" },
+  { id: "gender", label: "Gender" },
+  { id: "fullName", label: "Full Name" },
+  { id: "phone", label: "Phone" },
+  { id: "mail", label: "Email" },
+  { id: "birthday", label: "Birthday" },
+  { id: "blood", label: "Blood" },
+  { id: "address", label: "Address" },
+  { id: "emergency", label: "Emergency Contact Details" },
+  { id: "", label: "" },
+];
