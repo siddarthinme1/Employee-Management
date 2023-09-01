@@ -38,6 +38,8 @@ const salt = bcrypt.genSaltSync(10);
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const bearerToken =
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjkzNTQwMjM4LCJleHAiOjE2OTM2MjY2Mzh9.a8SQ48E_yvD_u6t1iX7ZgIO3J5OXZS75_3WHAJNLnnM";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -47,7 +49,7 @@ export default function SignUp() {
       password: data.get("password"),
     });
     const requestData = {
-      email: data.get("email"),
+      userName: data.get("email"),
       password: bcrypt.hashSync(data.get("password"), salt),
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
@@ -56,7 +58,12 @@ export default function SignUp() {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/saveUserAccount",
-        requestData
+        requestData,
+        {
+          headers: {
+            Authorization: `${bearerToken}`,
+          },
+        }
       );
       if (response.status === 200) {
         console.log("User account saved successfully");

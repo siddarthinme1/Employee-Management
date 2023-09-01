@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import { useForm } from "../Components/useForm";
+import { useForm } from "../Components/UseForm";
 
 const validate = (fieldValues) => {
   let errors = {};
@@ -24,7 +24,7 @@ test("useForm handles input change and validation", () => {
     <useForm
       initialFieldValues={initialFieldValues}
       validateOnChange={true}
-      validate={validate}
+      validate
     />
   );
 

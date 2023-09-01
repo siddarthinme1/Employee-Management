@@ -33,4 +33,7 @@ test("Submitting the form with valid data", async () => {
   expect(birthday).toHaveValue("01/006/1997");
   expect(bloodId).toHaveValue("1");
   expect(gender.value).toBe("Male");
+
+  const button = screen.getByRole("button", { name: "Reset" });
+  console.log(button);
 });

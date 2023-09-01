@@ -10,7 +10,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function useForm(initialFieldValues, validateOnChange = false, validate) {
+function UseForm(initialFieldValues, validateOnChange = false, validate) {
   const [values, setValues] = useState(initialFieldValues);
   const [errors, setErrors] = useState({});
 
@@ -50,4 +50,4 @@ function Form(props) {
   );
 }
 
-export { useForm, Form };
+export { UseForm, Form };

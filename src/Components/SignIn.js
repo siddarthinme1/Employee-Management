@@ -38,25 +38,33 @@ export default function SignIn(props) {
   const { authenticated, setAuthenticated } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const bearerToken =
+    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjkzNTQwMjM4LCJleHAiOjE2OTM2MjY2Mzh9.a8SQ48E_yvD_u6t1iX7ZgIO3J5OXZS75_3WHAJNLnnM";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const requestBody = {
+      userName: email,
+      password: password,
+    };
+
     try {
       const response = await fetch(
-        `http://localhost:8080/api/checkUserCredentials?email=${email}&password=${password}`,
+        `http://localhost:8080/api/checkUserCredentials`,
         {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `${bearerToken}`,
           },
+          body: JSON.stringify(requestBody),
         }
       );
 
       if (response.ok) {
         console.log("Sign-in successful!");
         setAuthenticated(true);
-        // Navigate("/EmployeeManagement/employees");
       } else {
         console.error("Invalid credentials");
       }

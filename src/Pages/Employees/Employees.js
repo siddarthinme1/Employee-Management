@@ -17,7 +17,7 @@ import EmployeeForm from "./EmployeeForm";
 import Control from "../../Controls/Control";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import useTable from "../../Components/useTable";
+import UseTable from "../../Components/UseTable";
 import Popup from "../../Components/Popup";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import RestoreIcon from "@mui/icons-material/Restore";
@@ -82,7 +82,7 @@ function Employees() {
     },
   });
 
-  const { TblContainer, TblHead, TblPagination, recordsAfterPaging } = useTable(
+  const { TblContainer, TblHead, TblPagination, recordsAfterPaging } = UseTable(
     employees,
     headCells,
     filterFn

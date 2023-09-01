@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { getBloodCollection, getRelation } from "./EmployeeServiceData";
 
 const API_URL = "http://localhost:8080/api/employees";
+const bearerToken =
+  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjkzNTQwMjM4LCJleHAiOjE2OTM2MjY2Mzh9.a8SQ48E_yvD_u6t1iX7ZgIO3J5OXZS75_3WHAJNLnnM";
 
 const useEmployeeServices = () => {
   const [employeeListUpdated, setEmployeeListUpdated] = useState(false);
@@ -12,7 +14,11 @@ const useEmployeeServices = () => {
   const addEmployee = async (values) => {
     console.log("values =", values);
     try {
-      const response = await axios.post(API_URL, values);
+      const response = await axios.post(API_URL, values, {
+        headers: {
+          Authorization: `${bearerToken}`,
+        },
+      });
       console.log("addEmployee =", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
@@ -26,7 +32,11 @@ const useEmployeeServices = () => {
     useEffect(() => {
       const fetchEmployees = async () => {
         try {
-          const response = await axios.get(API_URL);
+          const response = await axios.get(API_URL, {
+            headers: {
+              Authorization: `${bearerToken}`,
+            },
+          });
           console.log(response);
           setEmployees(response.data);
         } catch (error) {
@@ -47,7 +57,11 @@ const useEmployeeServices = () => {
 
   const deleteEmployee = async (id) => {
     try {
-      const response = await axios.delete(`${API_URL}/${id}`);
+      const response = await axios.delete(`${API_URL}/${id}`, {
+        headers: {
+          Authorization: `${bearerToken}`,
+        },
+      });
       console.log("deleteEmployee = ", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
@@ -58,7 +72,11 @@ const useEmployeeServices = () => {
   const updateEmployee = async (values) => {
     console.log("values =", values);
     try {
-      const response = await axios.put(`${API_URL}/${values.id}`, values);
+      const response = await axios.put(`${API_URL}/${values.id}`, values, {
+        headers: {
+          Authorization: `${bearerToken}`,
+        },
+      });
       console.log("updateEmployee = ", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
@@ -72,7 +90,11 @@ const useEmployeeServices = () => {
     useEffect(() => {
       const fetchBinEmployees = async () => {
         try {
-          const response = await axios.get(`${API_URL}/bin/`);
+          const response = await axios.get(`${API_URL}/bin/`, {
+            headers: {
+              Authorization: `${bearerToken}`,
+            },
+          });
           console.log(response);
           setBinEmployees(response.data);
         } catch (error) {
@@ -93,7 +115,11 @@ const useEmployeeServices = () => {
 
   const emptyRecycleBin = async () => {
     try {
-      const response = await axios.delete(`${API_URL}/clearBin/`);
+      const response = await axios.delete(`${API_URL}/clearBin/`, {
+        headers: {
+          Authorization: `${bearerToken}`,
+        },
+      });
       console.log("emptyRecycleBin", response);
       setEmployeeListUpdated(!employeeListUpdated);
     } catch (error) {
@@ -103,7 +129,11 @@ const useEmployeeServices = () => {
 
   const restoreEmployee = async (id) => {
     try {
-      const response = await axios.delete(`${API_URL}/restore/${id}`);
+      const response = await axios.delete(`${API_URL}/restore/${id}`, {
+        headers: {
+          Authorization: `${bearerToken}`,
+        },
+      });
       setEmployeeListUpdated(!employeeListUpdated);
       console.log("restoreEmployee", response);
     } catch (error) {

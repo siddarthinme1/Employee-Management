@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function useTable(records, headCells, filterFn) {
+function UseTable(records, headCells, filterFn) {
   const classes = useStyles();
 
   const pages = [3, 6, 9];
@@ -82,4 +82,4 @@ function useTable(records, headCells, filterFn) {
   return { TblContainer, TblHead, TblPagination, recordsAfterPaging };
 }
 
-export default useTable;
+export default UseTable;

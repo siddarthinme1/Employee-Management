@@ -61,5 +61,8 @@
     "transformIgnorePatterns": [
       "node_modules/(?!axios)/"
     ]
+  },
+  "browser": {
+    "crypto": false
   }
 }

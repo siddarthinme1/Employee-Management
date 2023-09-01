@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useForm, Form } from "../../Components/useForm";
+import { UseForm, Form } from "../../Components/UseForm";
 import Control from "../../Controls/Control";
 import {
   Checkbox,
@@ -44,7 +44,7 @@ function EmployeeForm(props) {
   };
 
   const { values, setValues, errors, setErrors, resetForm, handleInputChange } =
-    useForm(initialFieldValues, true, validate);
+    UseForm(initialFieldValues, true, validate);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
