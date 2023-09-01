@@ -38,8 +38,7 @@ export default function SignIn(props) {
   const { authenticated, setAuthenticated } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const bearerToken =
-    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjkzNTQwMjM4LCJleHAiOjE2OTM2MjY2Mzh9.a8SQ48E_yvD_u6t1iX7ZgIO3J5OXZS75_3WHAJNLnnM";
+  const [token, setToken] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,7 +55,7 @@ export default function SignIn(props) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `${bearerToken}`,
+            Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify(requestBody),
         }
@@ -124,6 +123,18 @@ export default function SignIn(props) {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="token"
+              label="Token"
+              type="password"
+              id="token"
+              autoComplete="current-password"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

@@ -38,8 +38,6 @@ const salt = bcrypt.genSaltSync(10);
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const bearerToken =
-    "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjkzNTQwMjM4LCJleHAiOjE2OTM2MjY2Mzh9.a8SQ48E_yvD_u6t1iX7ZgIO3J5OXZS75_3WHAJNLnnM";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,12 +56,7 @@ export default function SignUp() {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/saveUserAccount",
-        requestData,
-        {
-          headers: {
-            Authorization: `${bearerToken}`,
-          },
-        }
+        requestData
       );
       if (response.status === 200) {
         console.log("User account saved successfully");
@@ -146,7 +139,11 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
+                    <Checkbox
+                      value="allowExtraEmails"
+                      color="primary"
+                      required="true"
+                    />
                   }
                   label="I agree to the terms and conditions as set out by the user agreement.*"
                 />
