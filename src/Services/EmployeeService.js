@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import { getBloodCollection, getRelation } from "./EmployeeServiceData";
 
 const API_URL = "http://localhost:8080/api/employees";
-const bearerToken =
-  "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNjkzNTQwMjM4LCJleHAiOjE2OTM2MjY2Mzh9.a8SQ48E_yvD_u6t1iX7ZgIO3J5OXZS75_3WHAJNLnnM";
+const bearerToken = "Bearer" + sessionStorage.getItem("login");
 
 const useEmployeeServices = () => {
   const [employeeListUpdated, setEmployeeListUpdated] = useState(false);

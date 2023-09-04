@@ -33,6 +33,11 @@ export const NavigationBar = (props) => {
     props.setDarkMode((current) => !current);
   };
 
+  const handleLogout = () => {
+    sessionStorage.clear();
+    localStorage.clear();
+  };
+
   return (
     <>
       <AppBar position="static">
@@ -76,6 +81,7 @@ export const NavigationBar = (props) => {
             variant="contained"
             color={props.authenticated ? "error" : "success"}
             href="/Employee-Management"
+            onClick={handleLogout}
             sx={{
               ml: "15px",
               borderRadius: "8px",

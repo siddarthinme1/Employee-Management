@@ -23,17 +23,18 @@ const lightTheme = createTheme({
       default: "#f4f5fd",
     },
   },
-  shape: {
-    borderRadius: "10px",
-  },
+  // shape: {
+  //   borderRadius: "10px",
+  // },
 });
+
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
   },
-  shape: {
-    borderRadius: "10px",
-  },
+  // shape: {
+  //   borderRadius: "10px",
+  // },
 });
 
 function App() {

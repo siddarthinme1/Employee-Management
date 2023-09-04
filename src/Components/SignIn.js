@@ -13,6 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 function Copyright(props) {
   return (
@@ -38,7 +39,6 @@ export default function SignIn(props) {
   const { authenticated, setAuthenticated } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,20 +49,21 @@ export default function SignIn(props) {
     };
 
     try {
-      const response = await fetch(
-        `http://localhost:8080/api/checkUserCredentials`,
+      const response = await axios.post(
+        "http://localhost:8080/api/authenticate",
+        requestBody,
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify(requestBody),
         }
       );
 
-      if (response.ok) {
+      console.log(response.status === 200);
+      if (response.status) {
         console.log("Sign-in successful!");
+        const token = JSON.stringify(response.data);
+        sessionStorage.setItem("login", token);
         setAuthenticated(true);
       } else {
         console.error("Invalid credentials");
@@ -123,18 +124,6 @@ export default function SignIn(props) {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="token"
-              label="Token"
-              type="password"
-              id="token"
-              autoComplete="current-password"
-              value={token}
-              onChange={(e) => setToken(e.target.value)}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
