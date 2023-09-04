@@ -14,6 +14,12 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import {
+  Alert,
+  CircularProgress,
+  LinearProgress,
+  Snackbar,
+} from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -39,6 +45,7 @@ export default function SignIn(props) {
   const { authenticated, setAuthenticated } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [open, setOpen] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -152,6 +159,13 @@ export default function SignIn(props) {
           </Box>
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+        <Snackbar
+          open={open}
+          autoHideDuration={2000}
+          onClose={() => setOpen(false)}
+        >
+          <CircularProgress onClose={() => setOpen(false)} />
+        </Snackbar>
       </Container>
     </ThemeProvider>
   );

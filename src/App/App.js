@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, Grow } from "@mui/material";
 import { Navigate, Route, Routes } from "react-router-dom";
 import SignIn from "../Components/SignIn";
 import SignUp from "../Components/SignUp";
@@ -23,18 +23,18 @@ const lightTheme = createTheme({
       default: "#f4f5fd",
     },
   },
-  // shape: {
-  //   borderRadius: "10px",
-  // },
+  shape: {
+    borderRadius: 10,
+  },
 });
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
   },
-  // shape: {
-  //   borderRadius: "10px",
-  // },
+  shape: {
+    borderRadius: 10,
+  },
 });
 
 function App() {

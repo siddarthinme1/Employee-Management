@@ -77,6 +77,7 @@ export const NavigationBar = (props) => {
               }}
             ></InputBase>
           ) : null}
+          <Switch aria-label="Mode" onClick={handleToggle} />
           <Button
             variant="contained"
             color={props.authenticated ? "error" : "success"}
@@ -90,7 +91,6 @@ export const NavigationBar = (props) => {
           >
             {props.authenticated ? "Sign Out" : "Sign In"}
           </Button>
-          <Switch aria-label="Mode" onClick={handleToggle} />
         </Toolbar>
       </AppBar>
     </>

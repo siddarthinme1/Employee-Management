@@ -183,22 +183,7 @@ function Employees() {
                 />
               </Grid>
               <Grid item sm></Grid>
-              <Grid item>
-                <Zoom in="true">
-                  <Tooltip title="Add Employee">
-                    <Fab
-                      fullwidth="true"
-                      color="primary"
-                      onClick={() => {
-                        setOpenPopup(true);
-                        setRecordForEdit(null);
-                      }}
-                    >
-                      <AddIcon />
-                    </Fab>
-                  </Tooltip>
-                </Zoom>
-              </Grid>
+
               <Grid item>
                 <Tooltip title="Recycle Bin">
                   <FormControlLabel
@@ -222,9 +207,24 @@ function Employees() {
                   </Control.ActionButton>
                 ) : null}
               </Grid>
+              <Grid item>
+                <Zoom in="true">
+                  <Tooltip title="Add Employee">
+                    <Fab
+                      fullwidth="true"
+                      color="primary"
+                      onClick={() => {
+                        setOpenPopup(true);
+                        setRecordForEdit(null);
+                      }}
+                    >
+                      <AddIcon />
+                    </Fab>
+                  </Tooltip>
+                </Zoom>
+              </Grid>
             </Grid>
           </Toolbar>
-
           <TblContainer>
             <TblHead></TblHead>
             <TableBody>
