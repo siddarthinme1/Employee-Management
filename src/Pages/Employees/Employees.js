@@ -11,6 +11,8 @@ import {
   Alert,
   Grid,
   Tooltip,
+  CircularProgress,
+  Typography,
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import EmployeeForm from "./EmployeeForm";
@@ -69,7 +71,7 @@ function Employees() {
   const [showRestoreAlert, setShowRestoreAlert] = useState(false);
   const [showEmptyBinAlert, setShowEmptyBinAlert] = useState(false);
   const [itemIdToRestore, setItemIdToRestore] = useState(null);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const allEmployees = useAllEmployees();
   const binEmployees = useBinEmployees();
@@ -291,7 +293,8 @@ function Employees() {
               ) : (
                 <TableRow>
                   <TableCell colSpan={10} sx={{ textAlign: "center" }}>
-                    No Employees
+                    <Typography>No Employees</Typography>
+                    <CircularProgress />
                   </TableCell>
                 </TableRow>
               )}

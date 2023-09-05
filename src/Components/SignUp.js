@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import bcrypt from "bcryptjs";
+import Control from "../Controls/Control";
 
 function Copyright(props) {
   return (
@@ -38,6 +39,11 @@ const salt = bcrypt.genSaltSync(10);
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const [agree, setAgree] = useState(false);
+
+  const handleTermsAndCond = () => {
+    setAgree(!agree);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -95,7 +101,7 @@ export default function SignUp() {
           >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <Control.Input
                   autoComplete="given-name"
                   name="firstName"
                   required
@@ -106,17 +112,17 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <Control.Input
+                  autoComplete="family-name"
+                  name="lastName"
                   required
                   fullWidth
                   id="lastName"
                   label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <Control.Input
                   required
                   fullWidth
                   id="email"
@@ -126,7 +132,7 @@ export default function SignUp() {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <Control.Input
                   required
                   fullWidth
                   name="password"
@@ -142,10 +148,11 @@ export default function SignUp() {
                     <Checkbox
                       value="allowExtraEmails"
                       color="primary"
-                      required="true"
+                      required
+                      onClick={handleTermsAndCond}
                     />
                   }
-                  label="I agree to the terms and conditions as set out by the user agreement.*"
+                  label="I agree to the terms and conditions as set out by the user agreement."
                 />
               </Grid>
             </Grid>
@@ -154,6 +161,7 @@ export default function SignUp() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!agree}
             >
               Sign Up
             </Button>

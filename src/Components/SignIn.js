@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -14,12 +13,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
-import {
-  Alert,
-  CircularProgress,
-  LinearProgress,
-  Snackbar,
-} from "@mui/material";
+import { Alert, AlertTitle, CircularProgress, Snackbar } from "@mui/material";
+import Control from "../Controls/Control";
 
 function Copyright(props) {
   return (
@@ -46,6 +41,7 @@ export default function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,8 +61,6 @@ export default function SignIn(props) {
           },
         }
       );
-
-      console.log(response.status === 200);
       if (response.status) {
         console.log("Sign-in successful!");
         const token = JSON.stringify(response.data);
@@ -77,6 +71,7 @@ export default function SignIn(props) {
       }
     } catch (error) {
       console.error("Error:", error);
+      setError(error);
     }
   };
 
@@ -88,6 +83,12 @@ export default function SignIn(props) {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+        {error ? (
+          <Alert severity="error" sx={{ margin: 2 }}>
+            <AlertTitle>Error</AlertTitle>
+            An error occurred: — <strong>{error.response.data}</strong>
+          </Alert>
+        ) : null}
         <Box
           sx={{
             marginTop: 8,
@@ -108,7 +109,7 @@ export default function SignIn(props) {
             noValidate
             sx={{ mt: 1 }}
           >
-            <TextField
+            <Control.Input
               margin="normal"
               required
               fullWidth
@@ -120,7 +121,7 @@ export default function SignIn(props) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <TextField
+            <Control.Input
               margin="normal"
               required
               fullWidth
@@ -141,6 +142,7 @@ export default function SignIn(props) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={!password || !email}
             >
               Sign In
             </Button>

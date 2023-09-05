@@ -37,6 +37,7 @@ const useEmployeeServices = () => {
             },
           });
           console.log(response);
+
           setEmployees(response.data);
         } catch (error) {
           console.error("Failed to make request: ", error.message);
