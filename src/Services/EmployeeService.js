@@ -7,6 +7,7 @@ const bearerToken = "Bearer" + sessionStorage.getItem("login");
 
 const useEmployeeServices = () => {
   const [employeeListUpdated, setEmployeeListUpdated] = useState(false);
+
   const bloods = getBloodCollection();
   const relations = getRelation();
 
@@ -37,13 +38,13 @@ const useEmployeeServices = () => {
             },
           });
           console.log(response);
-
           setEmployees(response.data);
         } catch (error) {
           console.error("Failed to make request: ", error.message);
         }
       };
       fetchEmployees();
+      //eslint-disable-next-line
     }, [employeeListUpdated]);
 
     const employeesWithBlood = employees.map((x) => ({
@@ -102,6 +103,7 @@ const useEmployeeServices = () => {
         }
       };
       fetchBinEmployees();
+      //eslint-disable-next-line
     }, [employeeListUpdated]);
 
     const employeesWithBlood = binEmployees.map((x) => ({

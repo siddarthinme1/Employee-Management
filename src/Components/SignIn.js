@@ -25,7 +25,10 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link
+        color="inherit"
+        href="https://github.com/siddarthinme1/Employee-Management"
+      >
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -41,7 +44,7 @@ export default function SignIn(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [open, setOpen] = useState(false);
-  const [error, setError] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -61,7 +64,7 @@ export default function SignIn(props) {
           },
         }
       );
-      if (response.status) {
+      if (response?.status) {
         console.log("Sign-in successful!");
         const token = JSON.stringify(response.data);
         sessionStorage.setItem("login", token);
@@ -71,7 +74,13 @@ export default function SignIn(props) {
       }
     } catch (error) {
       console.error("Error:", error);
-      setError(error);
+      if (error.response?.status === 404) {
+        setErrorMsg("Server not found");
+      } else if (error.response?.status === 401) {
+        setErrorMsg("Couldn't find your account");
+      } else if (error?.code === "ERR_NETWORK") {
+        setErrorMsg(error.code);
+      }
     }
   };
 
@@ -83,10 +92,10 @@ export default function SignIn(props) {
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        {error ? (
+        {errorMsg ? (
           <Alert severity="error" sx={{ margin: 2 }}>
             <AlertTitle>Error</AlertTitle>
-            An error occurred: — <strong>{error.response.data}</strong>
+            An error occurred: — <strong>{errorMsg}</strong>
           </Alert>
         ) : null}
         <Box

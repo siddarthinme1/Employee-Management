@@ -307,7 +307,6 @@ function Employees() {
           setOpenPopup={setOpenPopup}
           title={recordForEdit ? "Edit Employee" : "Add Employee"}
         >
-          {" "}
           <EmployeeForm recordForEdit={recordForEdit} addOrEdit={addOrEdit} />
         </Popup>
 
