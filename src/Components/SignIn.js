@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,6 +15,7 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { Alert, AlertTitle, CircularProgress, Snackbar } from "@mui/material";
 import Control from "../Controls/Control";
+import AppContext from "../Context/AppContext";
 
 function Copyright(props) {
   return (
@@ -40,6 +41,8 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignIn(props) {
+  const { setToken } = useContext(AppContext);
+
   const { authenticated, setAuthenticated } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -67,7 +70,7 @@ export default function SignIn(props) {
       if (response?.status) {
         console.log("Sign-in successful!");
         const token = JSON.stringify(response.data);
-        sessionStorage.setItem("login", token);
+        setToken(token);
         setAuthenticated(true);
       } else {
         console.error("Invalid credentials");

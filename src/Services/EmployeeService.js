@@ -1,12 +1,17 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getBloodCollection, getRelation } from "./EmployeeServiceData";
+import AppContext from "../Context/AppContext";
 
 const API_URL = "http://localhost:8080/api/employees";
 const bearerToken = "Bearer" + sessionStorage.getItem("login");
 
 const useEmployeeServices = () => {
+  const { token } = useContext(AppContext);
+  const bearerToken = "Bearer" + token;
+
   const [employeeListUpdated, setEmployeeListUpdated] = useState(false);
+  console.log(bearerToken);
 
   const bloods = getBloodCollection();
   const relations = getRelation();
